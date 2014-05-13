@@ -30,8 +30,77 @@ node.appendChild(textnode);
 var firstChildRef = document.getElementById("dragon").firstChild;
 document.getElementById("dragon").insertBefore(node, firstChildRef);
 
+function disableAttack() {
+	var roll = document.getElementById("roll-dice");
+	roll.disabled = true;
+	roll.className = "inactive";
+	var attack = document.getElementById("attack"); 
+	attack.disabled = true;
+	attack.className = "inactive";
+}
 
-var round = 1;
+function enableAttack() {
+	var roll = document.getElementById("roll-dice");
+	roll.disabled = false;
+	roll.className = false;
+	var attack = document.getElementById("attack"); 
+	attack.disabled = false;
+	attack.className = false;
+}
+
+function deleteDice() {
+		var elements = document.getElementsByClassName("dice");
+		for(var i = 0; i < elements.length; i++){
+			elements[i].style.opacity = 0;
+		}
+		
+		setTimeout(function() {
+			while(elements.length > 0){
+				elements[0].parentNode.removeChild(elements[0]); 
+			}
+		}, 2000);
+}
+
+function notify(notification,color) {
+	//create the notification paragragh
+	var node = document.createElement("p");
+	node.className = "slideIn " + color;
+	var textnode = document.createTextNode(notification);
+	node.appendChild(textnode);
+	document.getElementById("notifier").appendChild(node);
+	
+	function removeNote() {
+		//delete all created notification paragraph	
+		var elements = document.getElementsByClassName("slideIn");
+		
+		while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+		}
+	}
+	//wait for animation to complete
+	setTimeout(removeNote, 2300);
+}
+
+function endGame(status) {
+	//add blur on the rest
+	var blur = document.getElementById("blur");
+	blur.style.webkitFilter = "blur(7px)";	
+	
+	//message
+	setTimeout( function() { 
+		//show ending dialog
+		var end = document.getElementById("end");
+		end.style.display = "block";
+		end.style.opacity = 1;
+
+		if (status === "won") {	
+			end.firstElementChild.innerHTML = "Congratulations,</br>you conquered the dragon!";
+		} else {
+			end.firstElementChild.innerHTML = "You were defeated by the dragon.";
+		} 
+	}, 1000); 
+}
+
 disableAttack();
 
 function beginGame() {
@@ -87,12 +156,12 @@ function knightRollDice() {
 	
 	//end turn if a 1 is rolled
 	if (knightRoll === 1) {
-    	//turn last die's text red
+		//turn last die's text red
     	var badDice = document.getElementById("dice-bay").lastChild;
-    	badDice.className += " badtext";
-    	
-    	disableAttack();
-    	knight.totalAttack = 0;
+		badDice.className += " badtext";
+
+		disableAttack();
+		knight.totalAttack = 0;
     	knight.Round = 0;
     	knight.prevRoll = 0;
     	
@@ -109,9 +178,9 @@ function knightRollDice() {
 		setTimeout(dragonRollDice, 3000);
     }
 	//Double bonus if the last two dice rolled equal each other
-	if (knight.prevRoll === knightRoll && knight.prev2Roll != knightRoll) {
-    	var goodDice = document.getElementById("dice-bay"); 
-    	var doubleBonus = [goodDice.lastChild, goodDice.lastChild.previousElementSibling];
+	if (knight.prevRoll === knightRoll && knight.prev2Roll !== knightRoll) {
+    	var goodDice = document.getElementById("dice-bay");
+		var doubleBonus = [goodDice.lastChild, goodDice.lastChild.previousElementSibling];
     	doubleBonus[0].className += " goodtext";
     	doubleBonus[1].className += " goodtext";
     	//add double the roll to the Total Attack in addition to the normal total
@@ -301,78 +370,6 @@ function attackByDragon() {
 		setTimeout(enableAttack, 4000);
 	}
     
-}
-
-function disableAttack() {
-	var roll = document.getElementById("roll-dice");
-	roll.disabled = true;
-	roll.className = "inactive";
-	var attack = document.getElementById("attack"); 
-	attack.disabled = true;
-	attack.className = "inactive";
-}
-
-function enableAttack() {
-	var roll = document.getElementById("roll-dice");
-	roll.disabled = false;
-	roll.className = false;
-	var attack = document.getElementById("attack"); 
-	attack.disabled = false;
-	attack.className = false;
-}
-
-
-function deleteDice() {
-		var elements = document.getElementsByClassName("dice");
-		for(var i = 0; i < elements.length; i++){
-			elements[i].style.opacity = 0;
-		}
-		
-		setTimeout(function() {
-			while(elements.length > 0){
-				elements[0].parentNode.removeChild(elements[0]); 
-			}
-		}, 2000);
-}
-
-function notify(notification,color) {
-	//create the notification paragragh
-	var node = document.createElement("p");
-	node.className = "slideIn " + color;
-	var textnode = document.createTextNode(notification);
-	node.appendChild(textnode);
-	document.getElementById("notifier").appendChild(node);
-	
-	function removeNote() {
-		//delete all created notification paragraph	
-		var elements = document.getElementsByClassName("slideIn");
-		
-		while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-		}
-	}
-	//wait for animation to complete
-	setTimeout(removeNote, 2300);
-}
-
-function endGame(status) {
-	//add blur on the rest
-	var blur = document.getElementById("blur");
-	blur.style.webkitFilter = "blur(7px)";	
-	
-	//message
-	setTimeout( function() { 
-		//show ending dialog
-		var end = document.getElementById("end");
-		end.style.display = "block";
-		end.style.opacity = 1;
-
-		if (status === "won") {	
-			end.firstElementChild.innerHTML = "Congratulations,</br>you conquered the dragon!";
-		} else {
-			end.firstElementChild.innerHTML = "You were defeated by the dragon.";
-		} 
-	}, 1000); 
 }
 
 
