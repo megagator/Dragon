@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dragon</title>
+	<meta charset="UTF-8">
+</head>
+<style>
+	body {
+		margin: 0;
+		padding: 0;
+		background-color: #555555;
+		background-image: url(brick-wall.png);
+		color: white;
+		font-family: monospace;
+	}
+	.container {
+		width: 60%;
+		min-width: 500px;
+		max-width: 1200px;
+		height: 350px;
+		margin: 0 auto;
+	}
+	#knight {
+		background: #0059b6;
+		float: left;
+		width: 50%;
+		height: 350px;
+	}
+	#dragon {
+		background: #d82424;
+		float: left;
+		width: 50%;
+		height: 350px;
+	}
+	p {
+		text-align: center;
+		font-size: 25px;
+		margin-top: 20px;
+	}
+	#notifier {
+		height: 100px;
+		min-width: 60%;
+		margin: 0 auto;
+		line-height: 100px;
+	}
+	#notifier p {
+		font-size: 28px;
+		background: #aeaeae;
+		margin: 0;
+		-webkit-transform: translateX(-150%);
+		-moz-transform: translateX(-150%);
+		transform: translateX(-150%);
+	}
+	.slideIn {
+		-webkit-animation: slide-in 2.0s ease;
+		-moz-animation: slide-in 2.0s ease;
+	}
+	@-webkit-keyframes slide-in {
+		0% {-webkit-transform: translateX(-120%);}
+		20%, 80% {-webkit-transform: translateX(0);}
+		100% {-webkit-transform: translateX(120%);}
+	}
+	@-moz-keyframes slide-in {
+		0% {transform: translateX(-120%);}
+		20%, 80% {transform: translateX(0);}
+		100% {transform: translateX(120%);}
+	}@keyframes slide-in {
+		0% {transform: translateX(-120%);}
+		20%, 80% {transform: translateX(0);}
+		100% {transform: translateX(120%);}
+	}
+	#rolls {
+		padding: 20px;
+		height: auto;
+		width: 60%;
+		background: rgba(0,0,0,0.3);
+		min-height: 100px;
+	}
+	#rolls button {
+		margin-bottom: 20px;
+	}
+	button {
+		display: block;
+		margin: 0 auto;
+		padding: 6px 20px;;
+		background: #aeaeae;
+		font-size: 18px;
+		font-family: monospace;
+		color: white;
+		border: none;
+		border-radius: 20px;
+		outline: none;
+	}
+	button:hover {
+		background: #ff8500;
+		cursor: pointer;
+	}
+	.inactive {
+		background: #aeaeae;
+		color: #d0d0d0;
+	}
+	.inactive:hover {
+		background: #aeaeae;
+		cursor: default;
+	}
+	#dice-bay {
+		min-height: 74px;
+	}
+	.dice {
+		height: 60px;
+		width: 60px;
+		display: inline-block;
+		background: #f3eba9;
+		border-radius: 11px;
+		color: black;
+		text-align: center;
+		line-height: 60px;
+		font-size: 2.4em;
+		font-family: monospace;
+		margin: 7px;
+		opacity: 1;
+		-webkit-animation: fade-in .3s ease; /* calls the animation to fade in on addition to the dom*/
+		animation: fade-in .3s ease;			
+		-webkit-transition: opacity .3s linear; /* calls the transition to fade out when the opacity is switched in js*/
+		transition: opacity .3s linear; 
+	}
+	@-webkit-keyframes fade-in {
+		from {opacity: 0;}
+		to   {opacity: 1;}
+	}
+	@-moz-keyframes fade-in {
+		from {opacity: 0;}
+		to   {opacity: 1;}
+	}
+	@keyframes fade-in {
+		from {opacity: 0;}
+		to   {opacity: 1;}
+	}
+	.badtext {
+		color: #d82424;
+	}
+	.goodtext {
+		color: #00931c;
+	}
+	.goldendice {
+		color: white;
+		background: gold;
+	}
+	#attack-total {
+		margin-top: 10px;
+	}
+	#attack {
+		margin-top: 20px;
+	}
+	#tutorial {
+		position: absolute;
+		display: block;
+		width: 100%;
+		min-width: 500px;
+		height: 100%;
+		margin: 0 auto;
+		opacity: 1;
+		text-shadow: 2px 2px 1px black; 
+		text-align: center;
+		background: rgba(0,0,0,0.5);
+		z-index: 10;
+		-webkit-transition: opacity 0.2s linear;
+		transition: opacity 0.2s linear;
+	}
+	h1 {
+		font-size: 60px;
+		margin-top: 80px;
+		color: #ff8500;
+		text-shadow: none;
+	}
+	h2 {
+		font-size: 34px;
+	}
+	#tutorial > div {
+		width: 70%;
+		margin: 0 auto;
+	}
+	#tutorial .dice {
+		height: 28px;
+		width: 28px;
+		line-height: 28px;
+		margin: 0 7px;;
+		font-size: 18px; 
+		text-shadow: none; 
+		border-radius: 6px;
+	}
+	#tutorial ul {
+			
+	}
+	#tutorial li {
+		font-size: 24px;
+		text-align: left;
+		padding: 3px;
+		list-style-type: square;
+	}
+	#play {
+		margin-top: 20px; 
+	}
+	#blur {
+		position: absolute;
+		width: 100%;
+		min-width: 500px;
+		height: 150%;
+		margin: 0 auto;
+		-webkit-filter: blur(7px);
+		filter: blur(7px);
+		z-index: 0;
+		-webkit-transition: -webkit-filter 0.7s linear;
+	}
+	#end {
+		position: absolute;
+		display: none;
+		opacity: 0;
+		width: 100%;
+		min-width: 500px;
+		height: 100%;
+		margin: 0 auto;
+		text-shadow: 2px 2px 1px black; 
+		text-align: center;
+		background: rgba(0,0,0,0.5);
+		z-index: 10;
+		-webkit-transition: opacity 1s linear;
+		transition: opacity 1s linear;
+	}
+	#end h1 {
+		margin-top: 280px;
+	}
+</style>
+
+<body>
+	<div id="tutorial">
+		<h1>Dragon</h1>
+		<h2>How To Play</h2>
+		<div><ul>
+			<li>Each round you will have a turn to attack the enemy, but he will attack you too.</li>
+			<li>Slay him before he can kill you, and you win!</li>
+			<li>Roll an unlimited number of dice to add to your total attack. </li>
+			<li>However, if you happen to roll a <div class="dice badtext">1</div>, you will miss your attack.</li>
+			<li>If you roll doubles, your attack for those rolls are combined and doubled.</li>  
+			<li><div class="dice goodtext">2</div><div class="dice goodtext">2</div>=<div class="dice goodtext">8</div></li>
+			<li>But also for the dragon :(</li>
+			<li>I wonder what happens if you land three in a row....</li>
+		</ul></div>
+		<button id="play" onclick="beginGame()">start</button>
+	</div>
+	<div id="end">
+		<h1></h1>
+		<button id="play" onclick="beginGame()">play again</button>
+	</div>
+<div id="blur">
+	<div class="container">
+		<div id="knight">
+			<p>knight</p>
+		</div>
+		
+		<div id="dragon">
+			<p>dragon</p>
+		</div>
+		
+	</div>	
+	
+	<div id="notifier"></div>
+	
+	<div id="rolls" class="container">
+		<button id="roll-dice" class="inactive" onclick="knightRollDice()">roll dice</button>
+		
+		<div id="dice-bay"></div>
+		
+		<p id="attack-total">Attack Total: 0</p>	
+		
+		<button id="attack" class="inactive" onclick="attackByKnight()">attack</button>
+	</div>
+</div>
+</body>
+	<script src="dragon.js"></script>
+</html>
+
+
+
+
+
+
