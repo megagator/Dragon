@@ -3,7 +3,7 @@
 <head>
 	<title>Dragon</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<div id="tutorial">
@@ -19,11 +19,11 @@
 			<li>But also for the dragon :(</li>
 			<li>I wonder what happens if you land three in a row....</li>
 		</ul></div>
-		<button id="play" onclick="beginGame()">start</button>
+		<button class="play">start</button>
 	</div>
 	<div id="end">
 		<h1></h1>
-		<button id="play" onclick="beginGame()">play again</button>
+		<button class="play">play again</button>
 	</div>
 <div id="blur">
 	<div class="container">
@@ -40,17 +40,17 @@
 	<div id="notifier"></div>
 	
 	<div id="rolls" class="container">
-		<button id="roll-dice" class="inactive" onclick="knightRollDice()">roll dice</button>
+		<button id="roll-dice" class="inactive">roll dice</button>
 		
 		<div id="dice-bay"></div>
 		
 		<p id="attack-total">Attack Total: 0</p>	
 		
-		<button id="attack" class="inactive" onclick="attackByKnight()">attack</button>
+		<button id="attack" class="inactive">attack</button>
 	</div>
 </div>
 </body>
-	<script src="dragon.js"></script>
+	<script src="js/dragon.min.js"></script>
 </html>
 
 

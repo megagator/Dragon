@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #555555;
-    background-image: url(brick-wall.png);
+    background-image: url(../brick-wall.png);
     color: white;
     font-family: monospace;
 }
@@ -32,35 +32,34 @@ p {
 }
 #notifier {
     height: 100px;
-    min-width: 60%;
+    width: 60%;
     margin: 0 auto;
     line-height: 100px;
-	p {
+	div {
+	height: inherit;
+	width: 100%;
+    background: #cccccc;
     font-size: 28px;
-    background: #aeaeae;
-    margin: 0;
-    -webkit-transform: translateX(-150%);
-    -moz-transform: translateX(-150%);
-    transform: translateX(-150%);
+    text-align: center;
+    opacity: 0;
 	}
 }
-.slideIn {
-    -webkit-animation: slide-in 2.0s ease;
-    -moz-animation: slide-in 2.0s ease;
+.fadeIn {
+    -webkit-animation: opaque-in 2.0s ease;
+    -moz-animation: opaque-in 2.0s ease;
+    animation: opaque-in 2.0s ease;
 }
-@-webkit-keyframes slide-in {
-    0% {-webkit-transform: translateX(-120%);}
-    20%, 80% {-webkit-transform: translateX(0);}
-    100% {-webkit-transform: translateX(120%);}
+@-webkit-keyframes opaque-in {
+    0%, 100% {opacity: 0;}
+    20%, 80% {opacity: 1;}
 }
-@-moz-keyframes slide-in {
-    0% {transform: translateX(-120%);}
-    20%, 80% {transform: translateX(0);}
-    100% {transform: translateX(120%);}
-}@keyframes slide-in {
-    0% {transform: translateX(-120%);}
-    20%, 80% {transform: translateX(0);}
-    100% {transform: translateX(120%);}
+@-moz-keyframes opaque-in {
+    0%, 100% {opacity: 0;}
+    20%, 80% {opacity: 1;}
+}
+@keyframes opaque-in {
+    0%, 100% {opacity: 0;}
+    20%, 80% {opacity: 1;}
 }
 #rolls {
     padding: 20px;
@@ -186,7 +185,7 @@ h1 {
 h2 {
 	font-size: 34px;
 }
-#play {
+.play {
     margin-top: 20px; 
 }
 #blur {
