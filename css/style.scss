@@ -35,6 +35,7 @@ p {
     width: 60%;
     margin: 0 auto;
     line-height: 100px;
+	
 	div {
 	height: inherit;
 	width: 100%;
@@ -45,17 +46,7 @@ p {
 	}
 }
 .fadeIn {
-    -webkit-animation: opaque-in 2.0s ease;
-    -moz-animation: opaque-in 2.0s ease;
-    animation: opaque-in 2.0s ease;
-}
-@-webkit-keyframes opaque-in {
-    0%, 100% {opacity: 0;}
-    20%, 80% {opacity: 1;}
-}
-@-moz-keyframes opaque-in {
-    0%, 100% {opacity: 0;}
-    20%, 80% {opacity: 1;}
+	animation: opaque-in 2.0s ease;
 }
 @keyframes opaque-in {
     0%, 100% {opacity: 0;}
@@ -67,6 +58,7 @@ p {
     width: 60%;
     background: rgba(0,0,0,0.3);
     min-height: 100px;
+	
 	button {
     margin-bottom: 20px;
 	}
@@ -82,6 +74,7 @@ button {
     border: none;
     border-radius: 20px;
     outline: none;
+	
 	&:hover {
     background: #ff8500;
     cursor: pointer;
@@ -90,6 +83,7 @@ button {
 .inactive {
     background: #aeaeae;
     color: #d0d0d0;
+	
 	&:hover {
     background: #aeaeae;
     cursor: default;
@@ -111,18 +105,8 @@ button {
     font-family: monospace;
     margin: 7px;
     opacity: 1;
-    -webkit-animation: fade-in .3s ease; /* calls the animation to fade in on addition to the dom*/
-    animation: fade-in .3s ease;			
-    -webkit-transition: opacity .3s linear; /* calls the transition to fade out when the opacity is switched in js*/
-    transition: opacity .3s linear; 
-}
-@-webkit-keyframes fade-in {
-    from {opacity: 0;}
-    to   {opacity: 1;}
-}
-@-moz-keyframes fade-in {
-    from {opacity: 0;}
-    to   {opacity: 1;}
+    animation: fade-in .3s ease; /* calls the animation to fade in on addition to the dom*/
+    transition: opacity .3s linear; /* calls the transition to fade out when the opacity is switched in js*/
 }
 @keyframes fade-in {
     from {opacity: 0;}
@@ -158,10 +142,13 @@ button {
     z-index: 10;
     -webkit-transition: opacity 0.2s linear;
     transition: opacity 0.2s linear;
+	
 	&> div {
     width: 70%;
     margin: 0 auto;
-	} .dice {
+	} 
+	
+	.dice {
     height: 28px;
     width: 28px;
     line-height: 28px;
@@ -169,7 +156,9 @@ button {
     font-size: 18px; 
     text-shadow: none; 
     border-radius: 6px;
-	}li {
+	}
+	
+	li {
     font-size: 24px;
     text-align: left;
     padding: 3px;
@@ -195,9 +184,8 @@ h2 {
     height: 100%;
     margin: 0 auto;
     -webkit-filter: blur(7px);
-    filter: blur(7px);
     z-index: 0;
-    -webkit-transition: -webkit-filter 0.7s linear;
+	transition: -webkit-filter 0.7s linear;
 }
 #end {
     position: absolute;
@@ -211,10 +199,9 @@ h2 {
     text-align: center;
     background: rgba(0,0,0,0.5);
     z-index: 10;
-    -webkit-transition: opacity 1s linear;
     transition: opacity 1s linear;
+	
 	h1 {
     margin-top: 280px;
-    
 	}
 }
