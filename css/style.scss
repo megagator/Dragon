@@ -183,8 +183,9 @@ h2 {
     min-width: 500px;
     height: 100%;
     margin: 0 auto;
-    -webkit-filter: blur(7px);
-    z-index: 0;
+	-webkit-filter: blur(7px);
+  /*filter: blur(7px);  not curently supported on any browser; confuses autoprefixer */ 
+	z-index: 0;
 	transition: -webkit-filter 0.7s linear;
 }
 #end {
